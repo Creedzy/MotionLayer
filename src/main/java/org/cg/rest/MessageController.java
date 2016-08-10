@@ -23,35 +23,35 @@ public class MessageController
 	@Autowired
 	UserServiceImpl userService;
 
-	@RequestMapping(value="/user/{id}" , method=RequestMethod.GET)
+	@RequestMapping(value="/message/{id}" , method=RequestMethod.GET)
 	public User getUser(@PathVariable("id") String userId) {
 		logger.debug("Getting user with id:{}",userId);
 		User user = userService.getUser(userId);
 		return user;
 
 	}
-	@RequestMapping("/user")
+	@RequestMapping("/message")
 	public List<User> getAllUsers() {
 		logger.debug("Returning all users");
 		List<User> users = userService.getAllUsers();
 		return users;
 	}
 
-	@RequestMapping(value="/user", method= RequestMethod.POST) 
+	@RequestMapping(value="/message", method= RequestMethod.POST) 
 	public User addUser(@RequestBody User user) {
 		logger.debug("Preparing to add user");
 		User newUser = userService.addUser(user);
 		return newUser;
 	}
 
-	@RequestMapping(value="/user/{id}", method=RequestMethod.DELETE)
+	@RequestMapping(value="/message/{id}", method=RequestMethod.DELETE)
 	public void deleteUser(@PathVariable("id") String userId){
 		logger.debug("Preparing to delete user with id:{}",userId);
 		userService.deleteUser(userId);
 
 	}
 
-	@RequestMapping(value="/user/{id}", method=RequestMethod.PUT)
+	@RequestMapping(value="/message/{id}", method=RequestMethod.PUT)
 	public User updateUser(@PathVariable String userId,@RequestBody User user){
 		logger.debug("In update user controller, updating user:{}",user);
 		User updatedUser = userService.updateUser(userId,user);
