@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.cg.Model.Message;
 import org.cg.service.MessageService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MessageServiceImpl implements MessageService {
 
 	
