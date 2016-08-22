@@ -48,6 +48,7 @@ Temporary Items
 /build/
 
 node_modules
+
 npm-debug.log
 dist
 .tmp
