@@ -57,3 +57,4 @@ bower_components
 .idea
 
 store.properties
+src/main/resources/store.properties
