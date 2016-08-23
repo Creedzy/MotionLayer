@@ -1,0 +1,35 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aws-context="http://www.springframework.org/schema/cloud/aws/context"
+       xmlns:jdbc="http://www.springframework.org/schema/cloud/aws/jdbc"
+       xmlns:context="http://www.springframework.org/schema/context"	
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context 
+            http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/cloud/aws/context
+        http://www.springframework.org/schema/cloud/aws/context/spring-cloud-aws-context.xsd
+        http://www.springframework.org/schema/cloud/aws/jdbc/spring-cloud-aws-jdbc.xsd
+        http://www.springframework.org/schema/cloud/aws/jdbc">
+		
+	
+    
+  
+    
+    
+
+   
+	   <context:property-placeholder location="classpath:store.properties"/>
+           <aws-context:context-region region="eu-west-1"/>
+           
+           <aws-context:context-credentials>
+      		 <aws-context:instance-profile-credentials/>
+      		 <aws-context:simple-credentials access-key="${accessKey:}" secret-key="${secretKey:}"/>
+  		   </aws-context:context-credentials>
+  		   
+  		   <jdbc:data-source
+		 db-instance-identifier="myRdsDatabase"
+		 password="${rdsPassword}">
+</jdbc:data-source>
+</beans>

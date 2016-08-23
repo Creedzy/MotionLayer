@@ -3,6 +3,7 @@ package org.cg.config;
 import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean;
 
 import com.fasterxml.jackson.datatype.joda.JodaModule;
@@ -11,7 +12,7 @@ import com.fasterxml.jackson.datatype.joda.JodaModule;
 
 @Configuration()
 @ComponentScan("org.cg")
-@ImportXml("classpath:")
+@ImportResource("classpath:awsconfig.xml")
 public class ApplicationConfig {
 
 	public Jackson2ObjectMapperFactoryBean objectMapper() {

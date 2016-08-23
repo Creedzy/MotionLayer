@@ -1,29 +1,17 @@
 package org.cg.service.impl;
-import org.cg.service.*;
+
+import java.util.List;
+
+import org.cg.Model.Message;
 import org.cg.Model.User;
+import org.cg.service.DynamoDBService;
+import org.springframework.stereotype.Service;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+
 @Service
 public class DynamoDBServiceImpl implements DynamoDBService
 {
-	AmazonDynamoDBClient dynamoDB;
-	@PostConstruct
-	public void initDb(){
-
-		AWSCredentials credentials = null;
-		try {
-
-			credentials = new DefaultAWSCredentialsProviderChain().getCredentials();
-		} catch (Exception e) {
-			throw new AmazonClientException(
-				"Cannot load the credentials from the credential profiles file. " +
-				"Please make sure that your credentials file is at the correct " +
-				"location (C:\\Users\\nas\\.aws\\credentials), and is in valid format.",
-				e);
-		}
-		dynamoDB = new AmazonDynamoDBClient(credentials);
-		Region usWest2 = Region.getRegion(Regions.EU_WEST_1);
-		dynamoDB.setRegion(usWest2);
-	}
+	
 	
 	public User addUser(User addUser){
 		User user = new User();
@@ -32,8 +20,8 @@ public class DynamoDBServiceImpl implements DynamoDBService
 		user.setName(addUser.getName());
 		user.setUserId(addUser.getUserId());
 		user.setContactPreference();
+		return user;
 		
-		DynamoDBMapper mapper = new DynamoDBMapper(dynamoDB);
 		
 	}
 	public User updateUser(User updateUser){
@@ -44,25 +32,59 @@ public class DynamoDBServiceImpl implements DynamoDBService
 		user.setName(updateUser.getName());
 		user.setUserId(updateUser.getUserId());
 		user.setContactPreference();
+		return user;
 		
-		DynamoDBMapper mapper = new DynamoDBMapper(dynamoDB);
 		
-		mapper.save
 	}
 	
 	public User getUser(String hashkey){
 		
 		User user = new User();
-		DynamoDBMapper mapper = new DynamoDBMapper(dynamoDB);
-		user = mapper.load(User.class, hashkey);
+	
+		
 		return user;
 		
 	}
-	public List<User> getAllUsers(){
+	
+	@Override
+	public User updateUser(String userId, User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<User> getUsersById() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<User> getAllUsers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void deleteUser(String UserId) {
+		// TODO Auto-generated method stub
 		
-		List<User> users = new ArrayList<User>();
-		DynamoDBMapper mapper = new DynamoDBMapper(dynamoDB);
-		mapper.batchLoad();
+	}
+	@Override
+	public Message getMessage(String messageId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<Message> getAllMessages(String userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public Message saveMessage(Message message) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void deleteMessage(String messageId) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
