@@ -1,12 +1,14 @@
 package org.cg.Model;
 
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import org.joda.time.DateTime;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
-@DynamoDBTable(tableName = "motioncapture")
+@Entity
+@Table(name = "MESSAGES")
 public class Message {
 
 	private String messageId;

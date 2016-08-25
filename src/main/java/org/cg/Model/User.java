@@ -2,13 +2,14 @@ package org.cg.Model;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
-
-
-@DynamoDBTable(tableName = "usr_reg")
+@Entity
+@Table(name = "USERS")
 public class User {
 	
 	private String userId;
@@ -23,22 +24,19 @@ public class User {
 	private boolean emailActive;
 	private byte[] hashKey;
 	
-	public User(){
-		
-	}
+	
+	
 
-	public void setContactPreference()
-	{
-		// TODO: Implement this method
-	}
-@DynamoDBHashKey	
+	@Id
+    @GeneratedValue
+    @Column(name = "USER_ID")
 public String getUserId() {
 		return userId;
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-@DynamoDBAttribute
+
 	public String getNickname() {
 		return nickname;
 	}
@@ -46,7 +44,7 @@ public String getUserId() {
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-@DynamoDBAttribute
+
 	public List<Role> getRoles() {
 		return roles;
 	}
@@ -54,7 +52,7 @@ public String getUserId() {
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
-@DynamoDBAttribute
+
 	public String getName() {
 		return name;
 	}
