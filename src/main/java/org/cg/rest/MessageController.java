@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
-
 @RestController
-public class UserController {
-	public static final Logger logger = LoggerFactory.getLogger(UserController.class);
+public class MessageController
+{
+
+
+	public static final Logger logger = LoggerFactory.getLogger(MessageController.class);
 
 	@Autowired
 	UserServiceImpl userService;
@@ -55,5 +55,4 @@ public class UserController {
 		User updatedUser = userService.updateUser(userId,user);
 		return updatedUser;
 	}
-
 }
