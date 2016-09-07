@@ -26,6 +26,11 @@ public class User {
 	public User(){
 		
 	}
+
+	public void setContactPreference()
+	{
+		// TODO: Implement this method
+	}
 @DynamoDBHashKey	
 public String getUserId() {
 		return userId;
