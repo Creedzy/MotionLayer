@@ -1,7 +1,7 @@
 package org.cg.service.impl;
 import org.cg.service.*;
 import org.cg.Model.User;
-
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 @Service
 public class DynamoDBServiceImpl implements DynamoDBService
 {
@@ -39,15 +39,15 @@ public class DynamoDBServiceImpl implements DynamoDBService
 	public User updateUser(User updateUser){
 		
 		User user = new User();
-		user.setRole(addUser.getRole());
-		user.setEmail(addUser.getEmail());
-		user.setName(addUser.getName());
-		user.setUserId(addUser.getUserId());
+		user.setRole(updateUser.getRole());
+		user.setEmail(updateUser.getEmail());
+		user.setName(updateUser.getName());
+		user.setUserId(updateUser.getUserId());
 		user.setContactPreference();
 		
 		DynamoDBMapper mapper = new DynamoDBMapper(dynamoDB);
 		
-		
+		mapper.save
 	}
 	
 	public User getUser(String hashkey){
@@ -61,7 +61,8 @@ public class DynamoDBServiceImpl implements DynamoDBService
 	public List<User> getAllUsers(){
 		
 		List<User> users = new ArrayList<User>();
-		users
+		DynamoDBMapper mapper = new DynamoDBMapper(dynamoDB);
+		mapper.batchLoad();
 	}
 	
 }

@@ -11,6 +11,7 @@ import com.fasterxml.jackson.datatype.joda.JodaModule;
 
 @Configuration()
 @ComponentScan("org.cg")
+@ImportXml("classpath:")
 public class ApplicationConfig {
 
 	public Jackson2ObjectMapperFactoryBean objectMapper() {
