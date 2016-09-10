@@ -28,8 +28,4 @@
       		 <aws-context:simple-credentials access-key="${accessKey:}" secret-key="${secretKey:}"/>
   		   </aws-context:context-credentials>
   		   
-  		   <jdbc:data-source
-		 db-instance-identifier="myRdsDatabase"
-		 password="${rdsPassword}">
-</jdbc:data-source>
 </beans>
