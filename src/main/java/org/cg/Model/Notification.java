@@ -1,11 +1,11 @@
 package org.cg.Model;
 
 import org.joda.time.DateTime;
-
+import java.io.Serializable;
 
 @Entity
 @Table(name = "NOTIFICATION")
-public class Notification
+public class Notification implements Serializable
 {
 	Long id;
 	String message;

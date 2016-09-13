@@ -1,10 +1,27 @@
 package org.cg.Model;
 
+
+@Entity
+@Table(name = "REQUEST")
 public class Role {
 
+	private String id;
 	private String roleName;
-	private String date;
+	private DateTime date;
 	public RoleLevel roleLevel;
+
+	public void setId(String id)
+	{
+		this.id = id;
+	}
+
+	@Id
+    @GeneratedValue
+    @Column(name = "ID")
+	public String getId()
+	{
+		return id;
+	}
 	
 	public RoleLevel getRoleLevel() {
 		return roleLevel;

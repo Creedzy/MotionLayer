@@ -3,13 +3,13 @@ package org.cg.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
-
+import java.io.Serializable;
 import org.joda.time.DateTime;
 
 
 @Entity
 @Table(name = "MESSAGES")
-public class Message {
+public class Message implements Serializable  {
 
 	private String messageId;
 	private DateTime date;

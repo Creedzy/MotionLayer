@@ -1,13 +1,13 @@
 package org.cg.Model;
 
 import org.joda.time.DateTime;
-
+import java.io.Serializable;
 
 
 
 @Entity
 @Table(name = "MOTION_CAPTURE")
-public class MotionCapture {
+public class MotionCapture implements Serializable {
 
 	String Id;
 	String format;

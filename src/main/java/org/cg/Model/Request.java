@@ -2,10 +2,10 @@ package org.cg.Model;
 
 
 import org.joda.time.DateTime;
-
+import java.io.Serializable;
 @Entity
 @Table(name = "REQUEST")
-public abstract class Request {
+public class Request implements Serializable {
 	
 	String requestId;
 	String description;

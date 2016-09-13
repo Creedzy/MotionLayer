@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.cg.Model.dto.UserDTO);
 import org.cg.Model.User;
 import org.cg.service.UserService;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -69,4 +70,14 @@ public UserServiceImpl (DataSource dataSource) {
 		
 	}
 
+	
+	public User convertDtoIntoEntity(UserDTO userDTO){
+		User user = new User();
+		user.setActivated(userDTO.isActivated());
+		user.setContactPreference(userDTO.getContactPreference());
+		user.setUserId(userDTO.getUserId));
+		user.setName(userDTO.getName());
+		user.setEmail(userDT
+		return user;
+	}
 }
