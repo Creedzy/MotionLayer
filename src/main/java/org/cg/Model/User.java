@@ -13,6 +13,9 @@ import java.io.Serializable;
 @Table(name = "USERS")
 public class User implements Serializable {
 	
+	@Id
+    @GeneratedValue
+    @Column(name = "USER_ID")
 	private String userId;
 	private String nickname;
 	private List<Role> roles;
@@ -28,9 +31,7 @@ public class User implements Serializable {
 	
 	
 
-	@Id
-    @GeneratedValue
-    @Column(name = "USER_ID")
+	
 public String getUserId() {
 		return userId;
 	}

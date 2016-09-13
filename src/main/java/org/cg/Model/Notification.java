@@ -1,5 +1,11 @@
 package org.cg.Model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.joda.time.DateTime;
 import java.io.Serializable;
 
@@ -7,15 +13,16 @@ import java.io.Serializable;
 @Table(name = "NOTIFICATION")
 public class Notification implements Serializable
 {
+	@Id
+    @GeneratedValue
+    @Column(name = "ID")
 	Long id;
 	String message;
 	String receiver;
 	String sender;
 	DateTime date;
     
-	@Id
-    @GeneratedValue
-    @Column(name = "ID")
+	
 	public void setId(Long id)
 	{
 		this.id = id;
@@ -30,7 +37,7 @@ public class Notification implements Serializable
 	{
 		this.date = date;
 	}
-    @DynamoDBAttribute
+    
 	public DateTime getDate()
 	{
 		return date;
@@ -40,7 +47,7 @@ public class Notification implements Serializable
 	{
 		this.sender = sender;
 	}
-    @DynamoDBAttribute
+    
 	public String getSender()
 	{
 		return sender;
@@ -50,7 +57,7 @@ public class Notification implements Serializable
 	{
 		this.message = message;
 	}
-    @DynamoDBAttribute
+    
 	public String getMessage()
 	{
 		return message;
@@ -62,7 +69,7 @@ public class Notification implements Serializable
 	{
 		this.receiver = receiver;
 	}
-    @DynamoDBAttribute
+    
 	public String getReceiver()
 	{
 		return receiver;

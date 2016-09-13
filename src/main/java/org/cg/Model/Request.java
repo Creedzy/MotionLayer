@@ -1,12 +1,21 @@
 package org.cg.Model;
 
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.joda.time.DateTime;
 import java.io.Serializable;
 @Entity
 @Table(name = "REQUEST")
 public class Request implements Serializable {
 	
+	@Id
+    @GeneratedValue
+    @Column(name = "REQUEST_ID")
 	String requestId;
 	String description;
 	String shortDescription;
@@ -16,9 +25,7 @@ public class Request implements Serializable {
 	boolean completed;
 	DateTime date;
 	
-	@Id
-    @GeneratedValue
-    @Column(name = "REQUEST_ID")
+	
 	public String getRequestId() {
 		return requestId;
 	}

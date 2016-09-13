@@ -3,6 +3,7 @@ package org.cg.rest;
 import java.util.List;
 import java.util.ArrayList;
 import org.cg.Model.User;
+import org.cg.service.UserService;
 import org.cg.service.impl.UserServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +22,7 @@ public class UserController {
 	public static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
-	UserServiceImpl userService;
+	UserService userService;
 
 	@RequestMapping(value="/user/{id}" , method=RequestMethod.GET)
 	public User getUser(@PathVariable("id") String userId) {

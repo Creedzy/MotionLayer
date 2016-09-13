@@ -1,5 +1,10 @@
 package org.cg.Model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Table;
+
 import org.joda.time.DateTime;
 import java.io.Serializable;
 
@@ -8,7 +13,10 @@ import java.io.Serializable;
 @Entity
 @Table(name = "MOTION_CAPTURE")
 public class MotionCapture implements Serializable {
-
+	
+	@javax.persistence.Id
+    @GeneratedValue
+    @Column(name = "ID")
 	String Id;
 	String format;
 	DateTime published;
@@ -20,23 +28,21 @@ public class MotionCapture implements Serializable {
 	String url;
 	String requestId;
 	
-	@Id
-    @GeneratedValue
-    @Column(name = "ID")
+	
 	public String getId() {
 		return Id;
 	}
 	public void setId(String id) {
 		Id = id;
 	}
-	@DynamoDBAttribute
+	
 	public String getRequestId() {
 		return requestId;
 	}
 	public void setRequestId(String requestId) {
 		this.requestId = requestId;
 	}
-	@DynamoDBAttribute
+	
 	public String getFormat() {
 		return format;
 	}
@@ -44,7 +50,7 @@ public class MotionCapture implements Serializable {
 		this.format = format;
 	}
 	
-	@DynamoDBAttribute
+	
 	public DateTime getPublished() {
 		return published;
 	}
@@ -52,7 +58,7 @@ public class MotionCapture implements Serializable {
 		this.published = published;
 	}
 	
-	@DynamoDBAttribute
+	
 	public String getDownloads() {
 		return Downloads;
 	}
@@ -60,7 +66,7 @@ public class MotionCapture implements Serializable {
 		Downloads = downloads;
 	}
 	
-	@DynamoDBAttribute
+	
 	public int getLength() {
 		return Length;
 	}
@@ -68,7 +74,7 @@ public class MotionCapture implements Serializable {
 		Length = length;
 	}
 	
-	@DynamoDBAttribute
+	
 	public String getFramerate() {
 		return framerate;
 	}
@@ -76,7 +82,7 @@ public class MotionCapture implements Serializable {
 		this.framerate = framerate;
 	}
 	
-	@DynamoDBAttribute
+	
 	public String getLoopable() {
 		return loopable;
 	}
@@ -84,7 +90,7 @@ public class MotionCapture implements Serializable {
 		this.loopable = loopable;
 	}
 	
-	@DynamoDBAttribute
+	
 	public String getUploader() {
 		return uploader;
 	}
@@ -92,7 +98,7 @@ public class MotionCapture implements Serializable {
 		this.uploader = uploader;
 	}
 	
-	@DynamoDBAttribute
+	
 	public String getUrl() {
 		return url;
 	}

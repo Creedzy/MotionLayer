@@ -1,10 +1,20 @@
 package org.cg.Model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.joda.time.DateTime;
 
 @Entity
 @Table(name = "REQUEST")
 public class Role {
-
+	
+	@Id
+    @GeneratedValue
+    @Column(name = "ID")
 	private String id;
 	private String roleName;
 	private DateTime date;
@@ -15,9 +25,7 @@ public class Role {
 		this.id = id;
 	}
 
-	@Id
-    @GeneratedValue
-    @Column(name = "ID")
+	
 	public String getId()
 	{
 		return id;
@@ -41,10 +49,10 @@ public class Role {
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
 	}
-	public String getDate() {
+	public DateTime getDate() {
 		return date;
 	}
-	public void setDate(String date) {
+	public void setDate(DateTime date) {
 		this.date = date;
 	}
 	

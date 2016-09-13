@@ -1,7 +1,10 @@
 package org.cg.Model;
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 import org.joda.time.DateTime;
@@ -10,16 +13,17 @@ import org.joda.time.DateTime;
 @Entity
 @Table(name = "MESSAGES")
 public class Message implements Serializable  {
-
+	
+	@Id
+    @GeneratedValue
+    @Column(name = "MEESSAGE_ID")
 	private String messageId;
 	private DateTime date;
 	private String sender;
 	private String receiver;
 	private String message;
 	
-	@Id
-    @GeneratedValue
-    @Column(name = "MEESSAGE_ID")
+	
 	public String getMessageId() {
 		return messageId;
 	}

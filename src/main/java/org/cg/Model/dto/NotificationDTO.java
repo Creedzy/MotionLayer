@@ -1,5 +1,7 @@
 package org.cg.Model.dto;
 
+import org.joda.time.DateTime;
+
 public class NotificationDTO
 {
 	Long id;

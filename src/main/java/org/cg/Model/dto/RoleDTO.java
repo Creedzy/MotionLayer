@@ -1,5 +1,7 @@
 package org.cg.Model.dto;
 
+import org.cg.Model.RoleLevel;
+
 public class RoleDTO
 {
 	private String id;

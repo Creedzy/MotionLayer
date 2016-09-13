@@ -1,5 +1,9 @@
 package org.cg.Model.dto;
 
+import java.util.List;
+
+import org.cg.Model.Role;
+
 public class UserDTO
 {
 	private String userId;

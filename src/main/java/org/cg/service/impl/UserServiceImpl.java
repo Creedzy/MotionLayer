@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.cg.Model.dto.UserDTO);
+import org.cg.Model.dto.UserDTO;
 import org.cg.Model.User;
 import org.cg.service.UserService;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,11 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UserServiceImpl implements UserService {
 
-private final JdbcTemplate jdbcTemplate;
-	
-public UserServiceImpl (DataSource dataSource) {
-	this.jdbcTemplate = new JdbcTemplate(dataSource);
-}
 
 
 @Transactional
@@ -29,7 +24,7 @@ public UserServiceImpl (DataSource dataSource) {
 		user.setEmail(addUser.getEmail());
 		user.setName(addUser.getName());
 		user.setUserId(addUser.getUserId());
-		user.setContactPreference();
+		user.setContactPreference(false);
 		
 		return user;
 	}
@@ -42,7 +37,7 @@ public UserServiceImpl (DataSource dataSource) {
 		user.setEmail(updateUser.getEmail());
 		user.setName(updateUser.getName());
 		user.setUserId(updateUser.getUserId());
-		user.setContactPreference();
+		user.setContactPreference(false);
 		return user;
 	}
 
@@ -74,10 +69,10 @@ public UserServiceImpl (DataSource dataSource) {
 	public User convertDtoIntoEntity(UserDTO userDTO){
 		User user = new User();
 		user.setActivated(userDTO.isActivated());
-		user.setContactPreference(userDTO.getContactPreference());
-		user.setUserId(userDTO.getUserId));
+		user.setContactPreference(userDTO.isContactPreference());
+		user.setUserId(userDTO.getUserId());
 		user.setName(userDTO.getName());
-		user.setEmail(userDT
+		user.setEmail(userDTO.getEmail());
 		return user;
 	}
 }
