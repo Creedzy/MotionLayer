@@ -2,11 +2,9 @@ package org.cg.Model;
 
 import org.joda.time.DateTime;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
-@DynamoDBTable(tableName="notifications")
+@Entity
+@Table(name = "NOTIFICATION")
 public class Notification
 {
 	Long id;
@@ -15,12 +13,14 @@ public class Notification
 	String sender;
 	DateTime date;
     
-	
+	@Id
+    @GeneratedValue
+    @Column(name = "ID")
 	public void setId(Long id)
 	{
 		this.id = id;
 	}
-    @DynamoDBHashKey
+    
 	public Long getId()
 	{
 		return id;

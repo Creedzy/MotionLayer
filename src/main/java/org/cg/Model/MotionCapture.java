@@ -2,12 +2,11 @@ package org.cg.Model;
 
 import org.joda.time.DateTime;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
 
-@DynamoDBTable(tableName = "motioncapture")
+
+@Entity
+@Table(name = "MOTION_CAPTURE")
 public class MotionCapture {
 
 	String Id;
@@ -21,7 +20,9 @@ public class MotionCapture {
 	String url;
 	String requestId;
 	
-	@DynamoDBHashKey
+	@Id
+    @GeneratedValue
+    @Column(name = "ID")
 	public String getId() {
 		return Id;
 	}

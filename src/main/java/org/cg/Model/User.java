@@ -60,7 +60,7 @@ public String getUserId() {
 	public void setName(String name) {
 		this.name = name;
 	}
-@DynamoDBAttribute
+
 	public String getEmail() {
 		return email;
 	}
@@ -68,7 +68,7 @@ public String getUserId() {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-@DynamoDBAttribute
+
 	public String getPassword() {
 		return password;
 	}
@@ -76,7 +76,7 @@ public String getUserId() {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	@DynamoDBAttribute
+	
 	public String getRole() {
 		return role;
 	}
@@ -84,7 +84,7 @@ public String getUserId() {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	@DynamoDBAttribute
+	
 	public boolean isActivated() {
 		return activated;
 	}
@@ -92,7 +92,7 @@ public String getUserId() {
 	public void setActivated(boolean activated) {
 		this.activated = activated;
 	}
-	@DynamoDBAttribute
+	
 	public boolean isContactPreference() {
 		return contactPreference;
 	}
@@ -100,7 +100,7 @@ public String getUserId() {
 	public void setContactPreference(boolean contactPreference) {
 		this.contactPreference = contactPreference;
 	}
-	@DynamoDBAttribute
+	
 	public boolean isEmailActive() {
 		return emailActive;
 	}
@@ -108,7 +108,7 @@ public String getUserId() {
 	public void setEmailActive(boolean emailActive) {
 		this.emailActive = emailActive;
 	}
-	@DynamoDBAttribute
+	
 	public byte[] getHashKey() {
 		return hashKey;
 	}

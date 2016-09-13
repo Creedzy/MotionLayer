@@ -17,7 +17,9 @@ public class Message {
 	private String receiver;
 	private String message;
 	
-	@DynamoDBHashKey
+	@Id
+    @GeneratedValue
+    @Column(name = "MEESSAGE_ID")
 	public String getMessageId() {
 		return messageId;
 	}
@@ -25,28 +27,28 @@ public class Message {
 	public void setMessageId(String messageId) {
 		this.messageId = messageId;
 	}
-	@DynamoDBAttribute
+	
 	public DateTime getDate() {
 		return date;
 	}
 	public void setDate(DateTime date) {
 		this.date = date;
 	}
-	@DynamoDBAttribute
+	
 	public String getSender() {
 		return sender;
 	}
 	public void setSender(String sender) {
 		this.sender = sender;
 	}
-	@DynamoDBAttribute
+	
 	public String getReceiver() {
 		return receiver;
 	}
 	public void setReceiver(String receiver) {
 		this.receiver = receiver;
 	}
-	@DynamoDBAttribute
+	
 	public String getMessage() {
 		return message;
 	}
