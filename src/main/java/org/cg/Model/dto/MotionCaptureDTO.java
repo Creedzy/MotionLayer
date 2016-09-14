@@ -4,7 +4,7 @@ import org.joda.time.DateTime;
 
 public class MotionCaptureDTO
 {
-	String Id;
+	Long Id;
 	String format;
 	DateTime published;
 	String Downloads;
@@ -17,12 +17,12 @@ public class MotionCaptureDTO
 	
 
 
-	public void setId(String id)
+	public void setId(Long id)
 	{
 		Id = id;
 	}
 
-	public String getId()
+	public Long getId()
 	{
 		return Id;
 	}

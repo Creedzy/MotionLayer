@@ -17,7 +17,7 @@ public class MotionCapture implements Serializable {
 	@javax.persistence.Id
     @GeneratedValue
     @Column(name = "ID")
-	String Id;
+	Long Id;
 	String format;
 	DateTime published;
 	String Downloads;
@@ -29,10 +29,10 @@ public class MotionCapture implements Serializable {
 	String requestId;
 	
 	
-	public String getId() {
+	public Long getId() {
 		return Id;
 	}
-	public void setId(String id) {
+	public void setId(Long id) {
 		Id = id;
 	}
 	

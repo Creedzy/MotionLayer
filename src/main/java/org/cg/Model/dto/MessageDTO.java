@@ -4,19 +4,19 @@ import org.joda.time.DateTime;
 
 public class MessageDTO
 {
-	private String messageId;
+	private Long messageId;
 	private DateTime date;
 	private String sender;
 	private String receiver;
 	private String message;
 
 
-	public void setMessageId(String messageId)
+	public void setMessageId(Long messageId)
 	{
 		this.messageId = messageId;
 	}
 
-	public String getMessageId()
+	public Long getMessageId()
 	{
 		return messageId;
 	}

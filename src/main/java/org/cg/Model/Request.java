@@ -16,7 +16,7 @@ public class Request implements Serializable {
 	@Id
     @GeneratedValue
     @Column(name = "REQUEST_ID")
-	String requestId;
+	Long requestId;
 	String description;
 	String shortDescription;
 	DateTime submittionDate;
@@ -26,10 +26,10 @@ public class Request implements Serializable {
 	DateTime date;
 	
 	
-	public String getRequestId() {
+	public Long getRequestId() {
 		return requestId;
 	}
-	public void setRequestId(String requestId) {
+	public void setRequestId(Long requestId) {
 		this.requestId = requestId;
 	}
 	

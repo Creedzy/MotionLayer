@@ -16,7 +16,7 @@ public class User implements Serializable {
 	@Id
     @GeneratedValue
     @Column(name = "USER_ID")
-	private String userId;
+	private Long userId;
 	private String nickname;
 	private List<Role> roles;
 	private String name;
@@ -32,11 +32,11 @@ public class User implements Serializable {
 	
 
 	
-public String getUserId() {
+public Long getUserId() {
 		return userId;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUserId(Long userId2) {
+		this.userId = userId2;
 	}
 
 	public String getNickname() {

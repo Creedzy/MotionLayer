@@ -6,7 +6,7 @@ import org.cg.Model.Role;
 
 public class UserDTO
 {
-	private String userId;
+	private Long userId;
 	private String nickname;
 	private List<Role> roles;
 	private String name;
@@ -21,12 +21,12 @@ public class UserDTO
 	
 
 
-	public void setUserId(String userId)
+	public void setUserId(Long userId)
 	{
 		this.userId = userId;
 	}
 
-	public String getUserId()
+	public Long getUserId()
 	{
 		return userId;
 	}

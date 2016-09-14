@@ -4,10 +4,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
 import org.cg.Model.User;
 import org.cg.Model.dto.UserDTO;
-import org.cg.service;
-import org.springframework.stereotype.Repository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.cg.repository.UserRepository;
+import org.cg.service.ServiceDAO;
+import org.cg.service.UserService;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -33,11 +34,11 @@ UserRepository userRepository;
 	}
 
 	@Override
-	public User updateUser(String userId, User updateUser) {
+	public User updateUser(Long userId, User updateUser) {
 		// TODO Auto-generated method stub
 		
 		User user = new User();
-		if(updateUser.getUserId().isEmpty() || updateUser.getUserId() == null){
+		if(  updateUser.getUserId() == null){
 			user.setUserId(userId);
 		}
 		if(updateUser.getEmail() != null){
@@ -62,7 +63,7 @@ UserRepository userRepository;
 	}
 
 	@Override
-	public User getUser(String userId) {
+	public User getUser(Long userId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -80,7 +81,7 @@ UserRepository userRepository;
 	}
 
 	@Override
-	public void deleteUser(String UserId) {
+	public void deleteUser(Long UserId) {
 		// TODO Auto-generated method stub
 		
 	}

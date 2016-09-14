@@ -15,18 +15,18 @@ public class Role {
 	@Id
     @GeneratedValue
     @Column(name = "ID")
-	private String id;
+	private Long id;
 	private String roleName;
 	private DateTime date;
 	public RoleLevel roleLevel;
 
-	public void setId(String id)
+	public void setId(Long id)
 	{
 		this.id = id;
 	}
 
 	
-	public String getId()
+	public Long getId()
 	{
 		return id;
 	}

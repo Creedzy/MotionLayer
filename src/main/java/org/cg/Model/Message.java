@@ -17,18 +17,18 @@ public class Message implements Serializable  {
 	@Id
     @GeneratedValue
     @Column(name = "MEESSAGE_ID")
-	private String messageId;
+	private Long messageId;
 	private DateTime date;
 	private String sender;
 	private String receiver;
 	private String message;
 	
 	
-	public String getMessageId() {
+	public Long getMessageId() {
 		return messageId;
 	}
 	
-	public void setMessageId(String messageId) {
+	public void setMessageId(Long messageId) {
 		this.messageId = messageId;
 	}
 	

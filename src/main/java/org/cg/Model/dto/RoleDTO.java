@@ -4,17 +4,17 @@ import org.cg.Model.RoleLevel;
 
 public class RoleDTO
 {
-	private String id;
+	private Long id;
 	private String roleName;
 	private String date;
 	public RoleLevel roleLevel;
 
-	public void setId(String id)
+	public void setId(Long id)
 	{
 		this.id = id;
 	}
 
-	public String getId()
+	public Long getId()
 	{
 		return id;
 	}

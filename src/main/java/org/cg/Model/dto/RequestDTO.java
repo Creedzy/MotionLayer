@@ -5,7 +5,7 @@ import org.joda.time.DateTime;
 public class RequestDTO
 {
 
-	String requestId;
+	Long requestId;
 	String description;
 	String shortDescription;
 	DateTime submittionDate;
@@ -15,12 +15,12 @@ public class RequestDTO
 	DateTime date;
 
 
-	public void setRequestId(String requestId)
+	public void setRequestId(Long requestId)
 	{
 		this.requestId = requestId;
 	}
 
-	public String getRequestId()
+	public Long getRequestId()
 	{
 		return requestId;
 	}

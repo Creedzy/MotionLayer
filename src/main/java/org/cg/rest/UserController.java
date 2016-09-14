@@ -25,7 +25,7 @@ public class UserController {
 	UserService userService;
 
 	@RequestMapping(value="/user/{id}" , method=RequestMethod.GET)
-	public User getUser(@PathVariable("id") String userId) {
+	public User getUser(@PathVariable("id") Long userId) {
 		logger.debug("Getting user with id:{}",userId);
 		User user = userService.getUser(userId);
 		return user;
@@ -46,14 +46,14 @@ public class UserController {
 	}
 
 	@RequestMapping(value="/user/{id}", method=RequestMethod.DELETE)
-	public void deleteUser(@PathVariable("id") String userId){
+	public void deleteUser(@PathVariable("id") Long userId){
 		logger.debug("Preparing to delete user with id:{}",userId);
 		userService.deleteUser(userId);
 
 	}
 
 	@RequestMapping(value="/user/{id}", method=RequestMethod.PUT)
-	public User updateUser(@PathVariable String userId,@RequestBody User user){
+	public User updateUser(@PathVariable Long userId,@RequestBody User user){
 		logger.debug("In update user controller, updating user:{}",user);
 		User updatedUser = userService.updateUser(userId,user);
 		return updatedUser;
