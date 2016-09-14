@@ -1,20 +1,21 @@
 package org.cg.service.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
-
-import javax.sql.DataSource;
-
-import org.cg.Model.dto.UserDTO;
 import org.cg.Model.User;
-import org.cg.service.UserService;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Service;
+import org.cg.Model.dto.UserDTO;
+import org.cg.service;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import org.cg.repository.UserRepository;
+import org.springframework.stereotype.Service;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends ServiceDAO implements UserService{
+ObjectMapper mapper = new ObjectMapper();
 
-
+@Autowired
+UserRepository userRepository;
 
 @Transactional
 	public User addUser(User addUser) {
@@ -25,18 +26,37 @@ public class UserServiceImpl implements UserService {
 		user.setName(addUser.getName());
 		user.setUserId(addUser.getUserId());
 		user.setContactPreference(false);
-		
+		user.setRoles(addUser.getRoles());
+		user.setNickname(addUser.getNickname());
+		user.setPassword(addUser.getPassword());
 		return user;
 	}
 
 	@Override
 	public User updateUser(String userId, User updateUser) {
 		// TODO Auto-generated method stub
+		
 		User user = new User();
-		user.setRole(updateUser.getRole());
-		user.setEmail(updateUser.getEmail());
-		user.setName(updateUser.getName());
-		user.setUserId(updateUser.getUserId());
+		if(updateUser.getUserId().isEmpty() || updateUser.getUserId() == null){
+			user.setUserId(userId);
+		}
+		if(updateUser.getEmail() != null){
+			user.setEmail(updateUser.getEmail());
+		}
+		if(updateUser.getName() != null){
+			user.setName(updateUser.getName());
+		}
+		if(updateUser.getRoles() != null){
+			user.setRoles(updateUser.getRoles());
+		}
+		if(updateUser.getNickname() != null){
+			user.setNickname(updateUser.getNickname());
+		}
+		if(updateUser.getPassword() != null) {
+			user.setPassword(updateUser.getPassword());
+		}
+		
+		
 		user.setContactPreference(false);
 		return user;
 	}
