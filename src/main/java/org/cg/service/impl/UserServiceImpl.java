@@ -9,27 +9,32 @@ import org.springframework.transaction.annotation.Transactional;
 import org.cg.repository.UserRepository;
 import org.cg.service.ServiceDAO;
 import org.cg.service.UserService;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl extends ServiceDAO implements UserService{
 ObjectMapper mapper = new ObjectMapper();
+Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
-@Autowired
-UserRepository userRepository;
 
 @Transactional
 	public User addUser(User addUser) {
 		// TODO Auto-generated method stub
 		User user = new User();
-		user.setRole(addUser.getRole());
+		
 		user.setEmail(addUser.getEmail());
 		user.setName(addUser.getName());
 		user.setUserId(addUser.getUserId());
-		user.setContactPreference(false);
-		user.setRoles(addUser.getRoles());
+		user.setContactPreference(addUser.isContactPreference());
+		user.setRole(addUser.getRole());
 		user.setNickname(addUser.getNickname());
 		user.setPassword(addUser.getPassword());
+		Session session = getCurrentSession();
+		session.save(user);
 		return user;
 	}
 
@@ -47,8 +52,8 @@ UserRepository userRepository;
 		if(updateUser.getName() != null){
 			user.setName(updateUser.getName());
 		}
-		if(updateUser.getRoles() != null){
-			user.setRoles(updateUser.getRoles());
+		if(updateUser.getRole() != null){
+			user.setRole(updateUser.getRole());
 		}
 		if(updateUser.getNickname() != null){
 			user.setNickname(updateUser.getNickname());
@@ -57,15 +62,23 @@ UserRepository userRepository;
 			user.setPassword(updateUser.getPassword());
 		}
 		
-		
-		user.setContactPreference(false);
+		if(updateUser.isContactPreference() != null) {
+		user.setContactPreference(updateUser.isContactPreference());
+		}
 		return user;
 	}
 
 	@Override
+	@Transactional
 	public User getUser(Long userId) {
-		// TODO Auto-generated method stub
-		return null;
+		User user;
+		Session session = sessionFactory.getCurrentSession();
+		logger.debug("is session open :{}",session.isOpen());
+		
+		user = (User) session.get(User.class, userId);
+		
+		logger.debug("returning user : {}",user);
+		return user;
 	}
 
 	@Override
@@ -88,12 +101,15 @@ UserRepository userRepository;
 
 	
 	public User convertDtoIntoEntity(UserDTO userDTO){
+		
+		
 		User user = new User();
 		user.setActivated(userDTO.isActivated());
 		user.setContactPreference(userDTO.isContactPreference());
 		user.setUserId(userDTO.getUserId());
 		user.setName(userDTO.getName());
 		user.setEmail(userDTO.getEmail());
+		
 		return user;
 	}
 }

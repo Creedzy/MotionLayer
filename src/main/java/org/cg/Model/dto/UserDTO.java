@@ -12,9 +12,8 @@ public class UserDTO
 	private String name;
 	private String email;
 	private String password;
-	private String role;
 	private boolean activated;
-	private boolean contactPreference;
+	private String contactPreference;
 	private boolean emailActive;
 	private byte[] hashKey;
 	
@@ -81,15 +80,7 @@ public class UserDTO
 		return password;
 	}
 
-	public void setRole(String role)
-	{
-		this.role = role;
-	}
-
-	public String getRole()
-	{
-		return role;
-	}
+	
 
 	public void setActivated(boolean activated)
 	{
@@ -101,12 +92,12 @@ public class UserDTO
 		return activated;
 	}
 
-	public void setContactPreference(boolean contactPreference)
+	public void setContactPreference(String contactPreference)
 	{
 		this.contactPreference = contactPreference;
 	}
 
-	public boolean isContactPreference()
+	public String isContactPreference()
 	{
 		return contactPreference;
 	}

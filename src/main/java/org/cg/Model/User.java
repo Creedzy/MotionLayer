@@ -1,13 +1,19 @@
 package org.cg.Model;
 
-import java.util.List;
 
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "USERS")
@@ -18,13 +24,16 @@ public class User implements Serializable {
     @Column(name = "USER_ID")
 	private Long userId;
 	private String nickname;
-	private List<Role> roles;
+	
+	@ElementCollection
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Role> role;
+	
 	private String name;
 	private String email;
 	private String password;
-	private String role;
 	private boolean activated;
-	private boolean contactPreference;
+	private String contactPreference;
 	private boolean emailActive;
 	private byte[] hashKey;
 	
@@ -47,12 +56,12 @@ public Long getUserId() {
 		this.nickname = nickname;
 	}
 
-	public List<Role> getRoles() {
-		return roles;
+	public List<Role> getRole() {
+		return role;
 	}
 
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
+	public void setRole(List<Role> roles) {
+		this.role = roles;
 	}
 
 	public String getName() {
@@ -79,13 +88,7 @@ public Long getUserId() {
 		this.password = password;
 	}
 	
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
+	
 	
 	public boolean isActivated() {
 		return activated;
@@ -95,11 +98,11 @@ public Long getUserId() {
 		this.activated = activated;
 	}
 	
-	public boolean isContactPreference() {
+	public String isContactPreference() {
 		return contactPreference;
 	}
 
-	public void setContactPreference(boolean contactPreference) {
+	public void setContactPreference(String contactPreference) {
 		this.contactPreference = contactPreference;
 	}
 	

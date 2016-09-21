@@ -1,13 +1,13 @@
 package org.cg.Model.dto;
 
-import org.cg.Model.RoleLevel;
+import java.util.List;
 
 public class RoleDTO
 {
 	private Long id;
-	private String roleName;
+	private List<String> roleName;
 	private String date;
-	public RoleLevel roleLevel;
+	
 
 	public void setId(Long id)
 	{
@@ -18,14 +18,18 @@ public class RoleDTO
 	{
 		return id;
 	}
+	
+	public void addRole(String role) {
+		if(role != null)
+		this.roleName.add(role);
+	}
 
-
-	public void setRoleName(String roleName)
+	public void setRoleName(List<String> roleName)
 	{
 		this.roleName = roleName;
 	}
 
-	public String getRoleName()
+	public List<String> getRoleName()
 	{
 		return roleName;
 	}
@@ -40,12 +44,4 @@ public class RoleDTO
 		return date;
 	}
 
-	public void setRoleLevel(RoleLevel roleLevel)
-	{
-		this.roleLevel = roleLevel;
 	}
-
-	public RoleLevel getRoleLevel()
-	{
-		return roleLevel;
-	}}

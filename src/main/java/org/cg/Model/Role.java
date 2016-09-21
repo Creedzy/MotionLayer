@@ -1,24 +1,36 @@
 package org.cg.Model;
 
+import java.util.List;
+
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.joda.time.DateTime;
 
 @Entity
-@Table(name = "REQUEST")
+@Table(name = "ROLE")
 public class Role {
 	
 	@Id
     @GeneratedValue
     @Column(name = "ID")
+	
 	private Long id;
-	private String roleName;
+	private String role;
 	private DateTime date;
-	public RoleLevel roleLevel;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	private User user;
+	
 
 	public void setId(Long id)
 	{
@@ -31,29 +43,35 @@ public class Role {
 		return id;
 	}
 	
-	public RoleLevel getRoleLevel() {
-		return roleLevel;
+	
+	public User getUser() {
+		return user;
 	}
 
-	public void setRoleLevel(RoleLevel roleLevel) {
-		this.roleLevel = roleLevel;
-	}
 
+	public void setUser(User user) {
+		this.user = user;
+	}
 	public Role(){
 		
 	}
 	
-	public String getRoleName() {
-		return roleName;
-	}
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
-	}
+	
 	public DateTime getDate() {
 		return date;
 	}
 	public void setDate(DateTime date) {
 		this.date = date;
+	}
+
+
+	public String getRole() {
+		return role;
+	}
+
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
 	
