@@ -4,11 +4,11 @@ import org.cg.Model.User;
 import java.util.List;
 public interface UserService  {
 
-	public User addUser(User user);
-    public User updateUser(Long userId, User user);
-	public User getUser(Long userId);
-	public List<User> getUsersById();
-	public List<User> getAllUsers();
+	public UserDTO addUser(UserDTO user);
+    public UserDTO updateUser(Long userId, UserDTO user);
+	public UserDTO getUser(Long userId);
+	public List<UserDTO> getUsersById();
+	public List<UserDTO> getAllUsers();
 	public void deleteUser(Long UserId);
 	
 }

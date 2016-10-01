@@ -1,48 +1,45 @@
 package org.cg.service.impl;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.List;
-import org.cg.Model.User;
-import org.cg.Model.dto.UserDTO;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
-import org.cg.repository.UserRepository;
-import org.cg.service.ServiceDAO;
-import org.cg.service.UserService;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
+import com.fasterxml.jackson.databind.*;
+import java.util.*;
+import org.cg.Model.*;
+import org.cg.Model.dto.*;
+import org.cg.service.*;
+import org.hibernate.*;
+import org.slf4j.*;
+import org.springframework.stereotype.*;
+import org.springframework.transaction.annotation.*;
 
 @Service
-public class UserServiceImpl extends ServiceDAO implements UserService{
+public class UserServiceImpl  implements UserService{
 ObjectMapper mapper = new ObjectMapper();
 Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
+@Autowired
+public ServiceDAO service;
+
 
 @Transactional
-	public User addUser(User addUser) {
+	public User addUser(UserDTO addUser) {
 		// TODO Auto-generated method stub
-		User user = new User();
+		User user = convertDtoIntoEntity(addUser);
 		
 		user.setEmail(addUser.getEmail());
 		user.setName(addUser.getName());
 		user.setUserId(addUser.getUserId());
 		user.setContactPreference(addUser.isContactPreference());
-		user.setRole(addUser.getRole());
+		
 		user.setNickname(addUser.getNickname());
 		user.setPassword(addUser.getPassword());
-		Session session = getCurrentSession();
-		session.save(user);
+		service.saveObject(user);
 		return user;
 	}
-
+@Transactional
 	@Override
-	public User updateUser(Long userId, User updateUser) {
+	public User updateUser(Long userId, UserDTO updateUser) {
 		// TODO Auto-generated method stub
 		
-		User user = new User();
+		User user = convertDtoIntoEntity(updateUser);
 		if(  updateUser.getUserId() == null){
 			user.setUserId(userId);
 		}
@@ -65,37 +62,43 @@ Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 		if(updateUser.isContactPreference() != null) {
 		user.setContactPreference(updateUser.isContactPreference());
 		}
+		service.updateObject(
 		return user;
 	}
 
 	@Override
 	@Transactional
-	public User getUser(Long userId) {
-		User user;
-		Session session = sessionFactory.getCurrentSession();
-		logger.debug("is session open :{}",session.isOpen());
-		
-		user = (User) session.get(User.class, userId);
+	public UserDTO getUser(Long userId) {
+		UserDTO user;
+		user = convertEntityIntoDto(service.getObject(User.class,userId));
 		
 		logger.debug("returning user : {}",user);
 		return user;
 	}
 
 	@Override
+	@Transactional
 	public List<User> getUsersById() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<User> getAllUsers() {
-		// TODO Auto-generated method stub
-		return null;
+	@Transactional
+	public List<UserDTO> getAllUsers() {
+		List<UserDTO> userDto = new ArrayList<UserDTO>();
+		List<User> user = service.returnList(User.class);
+		for(User u : user ){
+			userDto.add(convertEntityIntoDto(u));
+		}
+		return userDto;
 	}
 
 	@Override
-	public void deleteUser(Long UserId) {
-		// TODO Auto-generated method stub
+	@Transactional
+	public void deleteUser(Long userId) {
+		logger.debug("Deleting user with id:{}",userId);
+		service.deleteById("USERS",userId);
 		
 	}
 
@@ -110,6 +113,22 @@ Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 		user.setName(userDTO.getName());
 		user.setEmail(userDTO.getEmail());
 		
+		return user;
+	}
+	
+	public UserDTO convertEntityIntoDto(User userEntity){
+		UserDTO user = mapper.map(userEntity,UserDTO.class);
+		if (user.getUserId() == null) {
+			user.setUserId(userEntity.getUserId());
+		}
+		return user;
+	}
+	
+	public User convertDtoIntoEntity(UserDTO userDTO){
+		User user = mapper.map(userDTO,User.class);
+		if (user.getUserId()==null){
+			user.setUserId(userDTO.getUserId());
+		}
 		return user;
 	}
 }
