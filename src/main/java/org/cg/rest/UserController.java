@@ -3,6 +3,7 @@ package org.cg.rest;
 import java.util.List;
 import java.util.ArrayList;
 import org.cg.Model.User;
+import org.cg.Model.dto.UserDTO;
 import org.cg.service.UserService;
 import org.cg.service.impl.UserServiceImpl;
 import org.slf4j.Logger;
@@ -25,37 +26,37 @@ public class UserController {
 	UserService userService;
 
 	@RequestMapping(value="/user/{id}" , method=RequestMethod.GET)
-	public User getUser(@PathVariable("id") Long userId) {
+	public UserDTO getUser(@PathVariable("id") Long userId) {
 		logger.debug("Getting user with id:{}",userId);
-		User user = userService.getUser(userId);
+		UserDTO user = userService.getUser(userId);
 		return user;
 
 	}
 	@RequestMapping("/user")
-	public List<User> getAllUsers() {
+	public List<UserDTO> getAllUsers() {
 		logger.debug("Returning all users");
-		List<User> users = userService.getAllUsers();
+		List<UserDTO> users = userService.getAllUsers();
 		return users;
 	}
 
 	@RequestMapping(value="/user", method= RequestMethod.POST) 
-	public User addUser(@RequestBody User user) {
-		logger.debug("Preparing to add user");
-		User newUser = userService.addUser(user);
+	public UserDTO addUser(@RequestBody UserDTO user) {
+		logger.debug("Preparing to add user:{}",user);
+		UserDTO newUser = userService.addUser(user);
 		return newUser;
 	}
 
 	@RequestMapping(value="/user/{id}", method=RequestMethod.DELETE)
 	public void deleteUser(@PathVariable("id") Long userId){
-		logger.debug("Preparing to delete user with id:{}",userId);
+		logger.debug("Preparing to delete user with id:{}",userId.toString());
 		userService.deleteUser(userId);
 
 	}
 
 	@RequestMapping(value="/user/{id}", method=RequestMethod.PUT)
-	public User updateUser(@PathVariable Long userId,@RequestBody User user){
+	public UserDTO updateUser(@PathVariable Long id,@RequestBody UserDTO user){
 		logger.debug("In update user controller, updating user:{}",user);
-		User updatedUser = userService.updateUser(userId,user);
+		UserDTO updatedUser = userService.updateUser(id,user);
 		return updatedUser;
 	}
 

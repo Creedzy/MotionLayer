@@ -18,7 +18,12 @@ public class UserDTO
 	private byte[] hashKey;
 	
 	
-
+	@Override
+	public String toString() {
+		return "[ UserID:" + userId + ", Nickname:" + nickname + ", Roles:" + roles + ", Name:" + name + ", email:" + email + ", activated: "
+				+ activated + ", contactPreference:" + contactPreference + ", emaiActive:" + emailActive + ", hashKey:" + hashKey + "]";
+		
+	}
 
 	public void setUserId(Long userId)
 	{
