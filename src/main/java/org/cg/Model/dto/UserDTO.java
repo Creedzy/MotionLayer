@@ -8,7 +8,7 @@ public class UserDTO
 {
 	private Long userId;
 	private String nickname;
-	private List<Role> roles;
+	private List<RoleDTO> roles;
 	private String name;
 	private String email;
 	private String password;
@@ -45,12 +45,12 @@ public class UserDTO
 		return nickname;
 	}
 
-	public void setRoles(List<Role> roles)
+	public void setRoles(List<RoleDTO> roles)
 	{
 		this.roles = roles;
 	}
 
-	public List<Role> getRoles()
+	public List<RoleDTO> getRoles()
 	{
 		return roles;
 	}

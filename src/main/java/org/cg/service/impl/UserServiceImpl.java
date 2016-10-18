@@ -3,9 +3,12 @@ package org.cg.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.cg.Model.Role;
 import org.cg.Model.User;
+import org.cg.Model.dto.RoleDTO;
 import org.cg.Model.dto.UserDTO;
 import org.cg.service.UserService;
+import org.cg.service.DAOS.RoleDAO;
 import org.cg.service.DAOS.ServiceDAO;
 import org.cg.service.DAOS.UserDAO;
 import org.slf4j.Logger;
@@ -14,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.dozer.DozerBeanMapper;
+import org.joda.time.DateTime;
 @Service
 public class UserServiceImpl  implements UserService{
 
@@ -22,20 +26,15 @@ DozerBeanMapper mapper = new DozerBeanMapper();
 @Autowired
 public UserDAO userDao;
 
+@Autowired
+public RoleDAO roleDao;
 
 @Transactional
 	public UserDTO addUser(UserDTO addUser) {
 		// TODO Auto-generated method stub
 		User user = convertDtoIntoEntity(addUser);
 		
-		user.setEmail(addUser.getEmail());
-		user.setName(addUser.getName());
-		user.setUserId(addUser.getUserId());
-		user.setContactPreference(addUser.isContactPreference());
-		user.setRole(addUser.getRoles());
-		
-		user.setNickname(addUser.getNickname());
-		user.setPassword(addUser.getPassword());
+	
 		logger.debug("Creating user:{}",user.toString());
 		userDao.create(user);
 		return convertEntityIntoDto(user);
@@ -49,25 +48,7 @@ public UserDAO userDao;
 		if(  updateUser.getUserId() == null){
 			user.setUserId(userId);
 		}
-		if(updateUser.getEmail() != null){
-			user.setEmail(updateUser.getEmail());
-		}
-		if(updateUser.getName() != null){
-			user.setName(updateUser.getName());
-		}
-		if(updateUser.getRoles() != null){
-			user.setRole(updateUser.getRoles());
-		}
-		if(updateUser.getNickname() != null){
-			user.setNickname(updateUser.getNickname());
-		}
-		if(updateUser.getPassword() != null) {
-			user.setPassword(updateUser.getPassword());
-		}
 		
-		if(updateUser.isContactPreference() != null) {
-		user.setContactPreference(updateUser.isContactPreference());
-		}
 		logger.debug("About to update user:{}",user);
 		userDao.update(user);
 		return convertEntityIntoDto(user);
@@ -131,7 +112,15 @@ public UserDAO userDao;
 			user.setUserId(userDTO.getUserId());
 		}
 		if(userDTO.getRoles() != null) {
-			
+			List<Role> roles = new ArrayList<Role>();
+			for(RoleDTO role : userDTO.getRoles()) {
+				Role toAdd = mapper.map(role, Role.class);
+				toAdd.setUser(user);
+				DateTime date = new DateTime();
+				toAdd.setDate(date);
+				roles.add(toAdd);
+			}
+			user.setRole(roles);
 		}
 		return user;
 	}
