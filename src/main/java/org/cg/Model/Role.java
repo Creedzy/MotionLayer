@@ -1,5 +1,6 @@
 package org.cg.Model;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -26,11 +28,18 @@ public class Role {
 	
 	private Long id;
 	private String role;
-	private DateTime date;
+	private Date date;
+	
+	
 	
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "USER_ID")
 	private User user;
 	
+	@Override
+	public String toString() {
+		return "Role: [id=" + id + " ,role=" + role + " ,date=" + date + "]";
+	}
 
 	public void setId(Long id)
 	{
@@ -57,10 +66,10 @@ public class Role {
 	}
 	
 	
-	public DateTime getDate() {
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(DateTime date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

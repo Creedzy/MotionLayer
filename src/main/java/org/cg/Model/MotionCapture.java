@@ -2,7 +2,9 @@ package org.cg.Model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.joda.time.DateTime;
@@ -26,7 +28,8 @@ public class MotionCapture implements Serializable {
 	String loopable;
 	String uploader;
 	String url;
-	String requestId;
+	@OneToOne(fetch = FetchType.LAZY , mappedBy = "video")
+	Request request;
 	
 	
 	public Long getId() {
@@ -36,11 +39,11 @@ public class MotionCapture implements Serializable {
 		Id = id;
 	}
 	
-	public String getRequestId() {
-		return requestId;
+	public Request getRequestId() {
+		return request;
 	}
-	public void setRequestId(String requestId) {
-		this.requestId = requestId;
+	public void setRequestId(Request requestId) {
+		this.request = requestId;
 	}
 	
 	public String getFormat() {

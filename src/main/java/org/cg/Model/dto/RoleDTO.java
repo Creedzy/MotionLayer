@@ -5,9 +5,13 @@ import java.util.List;
 public class RoleDTO
 {
 	private Long id;
-	private List<String> roleName;
+	private String role;
 	private String date;
-	
+		
+	@Override
+	public String toString() {
+		return "Role: [id=" + id + " ,role=" + role + " ,date=" + date + "]";
+	}
 
 	public void setId(Long id)
 	{
@@ -19,19 +23,16 @@ public class RoleDTO
 		return id;
 	}
 	
-	public void addRole(String role) {
-		if(role != null)
-		this.roleName.add(role);
+	
+
+	public void setRoleName(String roleName)
+	{
+		this.role = roleName;
 	}
 
-	public void setRoleName(List<String> roleName)
+	public String getRoleName()
 	{
-		this.roleName = roleName;
-	}
-
-	public List<String> getRoleName()
-	{
-		return roleName;
+		return role;
 	}
 
 	public void setDate(String date)

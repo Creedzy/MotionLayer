@@ -3,12 +3,14 @@ package org.cg.service;
 import java.util.List;
 
 import org.cg.Model.Message;
+import org.cg.Model.dto.MessageDTO;
 
 public interface MessageService {
 	
 	
-public Message getMessage(String messageId);
-public List<Message> getAllMessages(String userId);
-public Message saveMessage(Message message);
-public void deleteMessage(String messageId);
+public MessageDTO getMessage(Long messageId);
+public MessageDTO saveMessage(MessageDTO message);
+public void deleteMessage(MessageDTO messageDto);
+public List<MessageDTO> getAllMessages();
+public List<MessageDTO> getMessagesForUser(String userId);
 }

@@ -26,7 +26,7 @@ public class User implements Serializable {
 	private String nickname;
 	
 	@ElementCollection
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Role> role;
 	
 	private String name;
@@ -37,10 +37,40 @@ public class User implements Serializable {
 	private boolean emailActive;
 	private byte[] hashKey;
 	
+	@ElementCollection
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "sender", cascade = CascadeType.ALL)
+	private List<Message> sentMessages;
 	
+	@ElementCollection
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "receiver", cascade = CascadeType.ALL)
+	private List<Message> receivedMessages;
 	
 
+	@ElementCollection
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "owner", cascade = CascadeType.ALL)
+	private List<Request> requests;
 	
+public List<Message> getSentMessages() {
+		return sentMessages;
+	}
+	public void setSentMessages(List<Message> sentMessages) {
+		this.sentMessages = sentMessages;
+	}
+	public List<Message> getReceivedMessages() {
+		return receivedMessages;
+	}
+	public void setReceivedMessages(List<Message> receivedMessages) {
+		this.receivedMessages = receivedMessages;
+	}
+	public List<Request> getRequests() {
+		return requests;
+	}
+	public void setRequests(List<Request> requests) {
+		this.requests = requests;
+	}
+	public String getContactPreference() {
+		return contactPreference;
+	}
 public Long getUserId() {
 		return userId;
 	}
@@ -122,6 +152,11 @@ public Long getUserId() {
 		this.hashKey = hashKey;
 	}
 
+	@Override
+	public String toString(){
+		return "User:[Userid="+ userId + ", Nickname=" + nickname + " ,role=" + role + " ,name=" + name + " ,email=" + email + " ,password=" + password
+				+ " ,activated=" + activated + " ,contactPreference=" + contactPreference + " ,emailActive=" + emailActive + " .hashKey=" + hashKey + "]";
+	}
 
 
 	

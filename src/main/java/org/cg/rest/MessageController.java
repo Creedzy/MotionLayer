@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.cg.Model.Message;
 import org.cg.Model.User;
+import org.cg.Model.dto.MessageDTO;
 import org.cg.service.impl.MessageServiceImpl;
 import org.cg.service.impl.UserServiceImpl;
 import org.slf4j.Logger;
@@ -27,30 +28,30 @@ public class MessageController
 	MessageServiceImpl messageService;
 
 	@RequestMapping(value="/message/{id}" , method=RequestMethod.GET)
-	public Message getUser(@PathVariable("id") String messageId) {
+	public MessageDTO getUser(@PathVariable("id") Long messageId) {
 		logger.debug("Getting message with id:{}",messageId);
-		Message message = messageService.getMessage(messageId);
+		MessageDTO message = messageService.getMessage(messageId);
 		return message;
 
 	}
 	@RequestMapping(value = "/message/users/{id}", method=RequestMethod.GET)
-	public List<Message> getAllMessages(@PathVariable("id") String userId) {
+	public List<MessageDTO> getAllMessages(@PathVariable("id") String userId) {
 		logger.debug("Returning all users");
-		List<Message> users = messageService.getAllMessages(userId);
-		return users;
+		List<MessageDTO> messages = messageService.getMessagesForUser(userId);
+		return messages;
 	}
 
 	@RequestMapping(value="/message", method= RequestMethod.POST) 
-	public Message addUser(@RequestBody Message message) {
+	public MessageDTO addUser(@RequestBody MessageDTO message) {
 		logger.debug("Preparing to add user");
-		Message newMessage = messageService.saveMessage(message);
+		MessageDTO newMessage = messageService.saveMessage(message);
 		return newMessage;
 	}
 
-	@RequestMapping(value="/message/{id}", method=RequestMethod.DELETE)
-	public void deleteUser(@PathVariable("id") String userId){
-		logger.debug("Preparing to delete user with id:{}",userId);
-		messageService.deleteMessage(userId);
+	@RequestMapping(value="/message/", method=RequestMethod.DELETE)
+	public void deleteUser(@RequestBody MessageDTO message){
+		logger.debug("Preparing to delete user with id:{}",message);
+		messageService.deleteMessage(message);
 
 	}
 

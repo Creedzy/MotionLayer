@@ -31,7 +31,7 @@ public RoleDAO roleDao;
 
 @Transactional
 	public UserDTO addUser(UserDTO addUser) {
-		// TODO Auto-generated method stub
+		logger.debug("Create-userDTO:{}",addUser);
 		User user = convertDtoIntoEntity(addUser);
 		
 	
@@ -49,7 +49,7 @@ public RoleDAO roleDao;
 			user.setUserId(userId);
 		}
 		
-		logger.debug("About to update user:{}",user);
+		logger.debug("About to update user:{}, user role:{}",user,user.getRole().toString());
 		userDao.update(user);
 		return convertEntityIntoDto(user);
 	}
@@ -62,7 +62,7 @@ public RoleDAO roleDao;
 		if(user != null){
 			userDto = convertEntityIntoDto(user);
 		}
-		logger.debug("returning user : {}",userDto);
+		logger.debug("returning user : {}",userDto.toString());
 		return userDto;
 	}
 
@@ -102,6 +102,16 @@ public RoleDAO roleDao;
 		if (user.getUserId() == null) {
 			user.setUserId(userEntity.getUserId());
 		}
+		if(userEntity.getRole() != null) {
+			List<RoleDTO> roleDTOs = new ArrayList<RoleDTO>();
+			for(Role role : userEntity.getRole()){
+				
+				RoleDTO temp = mapper.map(role, RoleDTO.class);
+				roleDTOs.add(temp);
+			}
+			user.setRoles(roleDTOs);
+		}
+		
 		return user;
 	}
 	
@@ -113,13 +123,18 @@ public RoleDAO roleDao;
 		}
 		if(userDTO.getRoles() != null) {
 			List<Role> roles = new ArrayList<Role>();
-			for(RoleDTO role : userDTO.getRoles()) {
+			for(RoleDTO role : userDTO.getRoles()) {			
 				Role toAdd = mapper.map(role, Role.class);
 				toAdd.setUser(user);
+				if(role.getRoleName() != null) {
+					toAdd.setRole(role.getRoleName());
+				}
 				DateTime date = new DateTime();
-				toAdd.setDate(date);
+				toAdd.setDate(date.toDate());
+				logger.debug("Adding role to user:{}",toAdd.toString());
 				roles.add(toAdd);
 			}
+			
 			user.setRole(roles);
 		}
 		return user;

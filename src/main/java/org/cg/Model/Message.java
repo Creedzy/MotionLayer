@@ -3,8 +3,10 @@ package org.cg.Model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 import org.joda.time.DateTime;
@@ -19,8 +21,10 @@ public class Message implements Serializable  {
     @Column(name = "MEESSAGE_ID")
 	private Long messageId;
 	private DateTime date;
-	private String sender;
-	private String receiver;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private User sender;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private User receiver;
 	private String message;
 	
 	
@@ -39,17 +43,17 @@ public class Message implements Serializable  {
 		this.date = date;
 	}
 	
-	public String getSender() {
+	public User getSender() {
 		return sender;
 	}
-	public void setSender(String sender) {
+	public void setSender(User sender) {
 		this.sender = sender;
 	}
 	
-	public String getReceiver() {
+	public User getReceiver() {
 		return receiver;
 	}
-	public void setReceiver(String receiver) {
+	public void setReceiver(User receiver) {
 		this.receiver = receiver;
 	}
 	

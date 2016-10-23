@@ -24,13 +24,30 @@
 		</rollingPolicy>
 
 	</appender>
+	
+	<appender name="CGLOG"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${DEV_HOME}/cg.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>
+				%d{HH:mm:ss.SSS} %-5level %class{36}.%M %L -- %msg%n
+			</Pattern>
+		</encoder>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${DEV_HOME}/archived/cg.%d{yyyy-MM-dd}.%i.log </fileNamePattern>
+			<maxHistory>5</maxHistory>
+		</rollingPolicy>
+
+	</appender>
 
 	<logger name="org.springframework"  level="debug">
 		
 	</logger>
 	
 	<logger name="org.cg"  level="debug">
-		
+		<appender-ref ref="CGLOG" />
 	</logger>
 
 	<root level="DEBUG">

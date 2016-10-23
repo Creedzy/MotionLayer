@@ -3,8 +3,11 @@ package org.cg.Model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.joda.time.DateTime;
@@ -24,7 +27,10 @@ public class Request implements Serializable {
 	String name;
 	boolean completed;
 	DateTime date;
-	
+	@ManyToOne(fetch = FetchType.LAZY)
+	User owner;
+	@OneToOne
+	MotionCapture video;
 	
 	public Long getRequestId() {
 		return requestId;
