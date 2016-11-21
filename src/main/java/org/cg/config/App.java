@@ -39,6 +39,10 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 			return new String[]{"/"};
 		}
 
-	   
+		@Override
+	    protected void customizeRegistration(ServletRegistration.Dynamic registration) {
+	        boolean done = registration.setInitParameter("throwExceptionIfNoHandlerFound", "true"); // -> true
+	        if(!done) throw new RuntimeException();
+	    }
 
 	}

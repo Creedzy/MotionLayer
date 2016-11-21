@@ -19,14 +19,20 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	@Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-        registry.addResourceHandler("/index.html").addResourceLocations("/resources/webapp/index.html");
+        registry.addResourceHandler("/404.html").addResourceLocations("file:/usr/local/tomcat/webapps/CC/");
+        registry.addResourceHandler("/index.html").addResourceLocations("/resources/webapp/index.html","file:/usr/local/tomcat/webapps/CC/");
+        registry.addResourceHandler("/bower_components/**").addResourceLocations("file:/usr/local/tomcat/webapps/CC/bower_components/");
+        registry.addResourceHandler("/scripts/**").addResourceLocations("file:/usr/local/tomcat/webapps/CC/scripts/");
+        registry.addResourceHandler("/js/**").addResourceLocations("file:/usr/local/tomcat/webapps/CC/js/");
+        registry.addResourceHandler("/styles/**").addResourceLocations("file:/usr/local/tomcat/webapps/CC/styles/");
+        registry.addResourceHandler("/views/**").addResourceLocations("file:/usr/local/tomcat/webapps/CC/views/");
     }
 	
 	@Bean  
     public UrlBasedViewResolver setupViewResolver() {  
         UrlBasedViewResolver resolver = new UrlBasedViewResolver();  
-        resolver.setPrefix("/resources/webapp/");  
-        resolver.setSuffix(".jsp");  
+        resolver.setPrefix("/");  
+        resolver.setSuffix(".html");  
         resolver.setViewClass(JstlView.class);  
         return resolver;  
     }  

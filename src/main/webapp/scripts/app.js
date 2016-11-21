@@ -103,6 +103,7 @@ angular
     })
       .state('login',{
         templateUrl:'views/pages/login.html',
+          controller:'LoginController',
         url:'/login'
     })
       .state('dashboard.chart',{
