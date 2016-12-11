@@ -48,7 +48,7 @@ public class MessageController
 		return newMessage;
 	}
 
-	@RequestMapping(value="/message/", method=RequestMethod.DELETE)
+	@RequestMapping(value="/message", method=RequestMethod.DELETE)
 	public void deleteUser(@RequestBody MessageDTO message){
 		logger.debug("Preparing to delete user with id:{}",message);
 		messageService.deleteMessage(message);

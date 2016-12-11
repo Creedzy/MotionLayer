@@ -18,11 +18,16 @@ public class Notification implements Serializable
     @Column(name = "ID")
 	Long id;
 	String message;
-	String receiver;
-	String sender;
 	DateTime date;
     
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "USER_ID")
+	private User Sender;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "USER_ID")
+	private User Receiver
+	;
 	public void setId(Long id)
 	{
 		this.id = id;

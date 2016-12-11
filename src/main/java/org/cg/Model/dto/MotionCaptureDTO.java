@@ -11,9 +11,19 @@ public class MotionCaptureDTO
 	int Length;
 	String framerate;
 	String loopable;
-	String uploader;
+	User uploader;
 	String url;
 	String requestId;
+
+	public void setUploader(User uploader)
+	{
+		this.uploader = uploader;
+	}
+
+	public User getUploader()
+	{
+		return uploader;
+	}
 	
 
 
@@ -87,16 +97,7 @@ public class MotionCaptureDTO
 		return loopable;
 	}
 
-	public void setUploader(String uploader)
-	{
-		this.uploader = uploader;
-	}
-
-	public String getUploader()
-	{
-		return uploader;
-	}
-
+	
 	public void setUrl(String url)
 	{
 		this.url = url;

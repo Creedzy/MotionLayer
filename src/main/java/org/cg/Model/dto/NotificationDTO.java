@@ -6,11 +6,31 @@ public class NotificationDTO
 {
 	Long id;
 	String message;
-	String receiver;
-	String sender;
+	
+	
 	DateTime date;
+	private User sender;
+	private User receiver;
 
+	public void setReceiver(User receiver)
+	{
+		this.receiver = receiver;
+	}
 
+	public User getReceiver()
+	{
+		return receiver;
+	}
+
+	public void setSender(User sender)
+	{
+		this.sender = sender;
+	}
+
+	public User getSender()
+	{
+		return sender;
+	}
 	public void setId(Long id)
 	{
 		this.id = id;
@@ -31,25 +51,6 @@ public class NotificationDTO
 		return message;
 	}
 
-	public void setReceiver(String receiver)
-	{
-		this.receiver = receiver;
-	}
-
-	public String getReceiver()
-	{
-		return receiver;
-	}
-
-	public void setSender(String sender)
-	{
-		this.sender = sender;
-	}
-
-	public String getSender()
-	{
-		return sender;
-	}
 
 	public void setDate(DateTime date)
 	{

@@ -26,10 +26,25 @@ public class MotionCapture implements Serializable {
 	int Length;
 	String framerate;
 	String loopable;
-	String uploader;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "USER_ID")
+	private User uploader;
+	
 	String url;
+	
 	@OneToOne(fetch = FetchType.LAZY , mappedBy = "video")
 	Request request;
+
+	public void setReceiver(User receiver)
+	{
+		uploader = receiver;
+	}
+
+	public User getReceiver()
+	{
+		return uploader;
+	}
 	
 	
 	public Long getId() {
@@ -91,14 +106,6 @@ public class MotionCapture implements Serializable {
 	}
 	public void setLoopable(String loopable) {
 		this.loopable = loopable;
-	}
-	
-	
-	public String getUploader() {
-		return uploader;
-	}
-	public void setUploader(String uploader) {
-		this.uploader = uploader;
 	}
 	
 	
