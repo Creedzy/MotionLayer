@@ -20,7 +20,7 @@ public class MainController {
     
     @RequestMapping("/login")
     public String login() {
-    	return "views/pages/login";
+    	return "apps/login/Login";
     }
     
     @RequestMapping(value = {"/404"}, method = RequestMethod.GET)

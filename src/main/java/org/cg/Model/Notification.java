@@ -2,8 +2,12 @@ package org.cg.Model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.joda.time.DateTime;
@@ -21,13 +25,10 @@ public class Notification implements Serializable
 	DateTime date;
     
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "USER_ID")
 	private User Sender;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "USER_ID")
-	private User Receiver
-	;
+	private User Receiver;
 	public void setId(Long id)
 	{
 		this.id = id;
@@ -48,14 +49,14 @@ public class Notification implements Serializable
 		return date;
 	}
 
-	public void setSender(String sender)
+	public void setSender(User sender)
 	{
-		this.sender = sender;
+		this.Sender = sender;
 	}
     
-	public String getSender()
+	public User getSender()
 	{
-		return sender;
+		return Sender;
 	}
 
 	public void setMessage(String message)
@@ -70,12 +71,12 @@ public class Notification implements Serializable
 	
 
 
-	public void setReceiver(String receiver)
+	public void setReceiver(User receiver)
 	{
-		this.receiver = receiver;
+		this.Receiver = receiver;
 	}
     
-	public String getReceiver()
+	public User getReceiver()
 	{
-		return receiver;
+		return Receiver;
 	}}

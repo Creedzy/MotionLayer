@@ -1,5 +1,6 @@
 package org.cg.Model.dto;
 
+import org.cg.Model.User;
 import org.joda.time.DateTime;
 
 public class MotionCaptureDTO
